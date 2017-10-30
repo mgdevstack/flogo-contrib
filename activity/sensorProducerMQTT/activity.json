@@ -10,10 +10,6 @@
       "type": "string"
     },
     {
-      "name": "temperature",
-      "type": "string"
-    },
-    {
       "name": "sensorID",
       "type": "string"
     }

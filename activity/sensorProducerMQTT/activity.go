@@ -27,16 +27,26 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 
 	// do eval
 	brokerURL := context.GetInput("mqttBrokerURL").(string)
-	temperature := context.GetInput("temperature").(string)
 	sensorID := context.GetInput("sensorID").(string)
 
 	// logging data to debug
 	log.Debugf("Broker Address: [%s]", brokerURL)
-	log.Debugf("Temperature: [%s]", temperature)
 	log.Debugf("Sensor ID: [%s]", sensorID)
 
 	//connect with MQTT Broker
 
+	ticker := time.NewTicker(time.Second)
+	
+	go func() {
+		for t := range ticker.C {
+			log.Infof("Temperature: [%0.2f] at time [%s]", getSensorTemperature(), t.Format(time.RFC3339))
+		}
+	}()
+
+	time.Sleep(time.Second * 2)
+	ticker.Stop()
+	log.Info("Data Sent")
+	
 	//check existing topics against sensor ID (crete topic if missing)
 
 	//store temperature data
@@ -45,4 +55,10 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	context.SetOutput("isTopicExists", "true")
 	context.SetOutput("result", "sent")
 	return true, nil
+}
+
+// getSensorTemperature sends random
+func getSensorTemperature() float64 {
+	rand.Seed(time.Now().Unix())
+	return ((rand.Float64() * 10) + 30)
 }
