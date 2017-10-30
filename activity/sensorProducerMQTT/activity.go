@@ -15,6 +15,11 @@ type MyActivity struct {
 	metadata *activity.Metadata
 }
 
+// Setup log level
+func init() {
+	log.SetLogLevel(logger.InfoLevel)
+}
+
 // NewActivity creates a new activity
 func NewActivity(metadata *activity.Metadata) activity.Activity {
 	return &MyActivity{metadata: metadata}
