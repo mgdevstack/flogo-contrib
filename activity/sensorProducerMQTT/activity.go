@@ -1,6 +1,9 @@
 package sensorProducerMQTT
 
 import (
+	"math/rand"
+	"time"
+
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
@@ -36,7 +39,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	//connect with MQTT Broker
 
 	ticker := time.NewTicker(time.Second)
-	
+
 	go func() {
 		for t := range ticker.C {
 			log.Infof("Temperature: [%0.2f] at time [%s]", getSensorTemperature(), t.Format(time.RFC3339))
@@ -46,7 +49,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	time.Sleep(time.Second * 2)
 	ticker.Stop()
 	log.Info("Data Sent")
-	
+
 	//check existing topics against sensor ID (crete topic if missing)
 
 	//store temperature data
