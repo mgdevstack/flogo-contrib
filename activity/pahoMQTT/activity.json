@@ -1,0 +1,45 @@
+{
+  "name": "pahoMQTT",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "description": "Activity Creates paho client and send data to respective mqtt broker",
+  "author": "Mayank Gaikwad <mayank.gaikwad@globant.com>",
+  "inputs":[
+    {
+      "name": "broker",
+      "type": "string",
+      "required": true      
+    },
+    {
+      "name": "topic",
+      "type": "string",
+      "required":true
+    },
+    {
+      "name": "clientId",
+      "type": "string"
+    },
+    {
+      "name": "cleansession",
+      "type": "boolean"
+    },
+    {
+      "name": "qos",
+      "type": "integer"
+    },
+    {
+      "name": "payload",
+      "type": "string"
+    },
+    {
+      "name": "action",
+      "type": "string"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "output",
+      "type": "any"
+    }
+  ]
+}
