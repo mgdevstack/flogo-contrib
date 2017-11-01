@@ -53,7 +53,12 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	pubTopic := mqttTopic + "/" + mqttClientID
 	// mqtt_action := context.GetInput("action").(string)
 
-	// log.Infof("MQTT Action: [%s]", mqtt_action)
+	log.Infof("MQTT Broker: [%s]", mqttBroker)
+	log.Infof("MQTT Topic: [%s]", mqttTopic)
+	log.Infof("MQTT ClientID: [%s]", mqttClientID)
+	log.Infof("MQTT QoS: [%s]", mqttQos)
+	log.Infof("MQTT Payload: [%s]", mqttPayload)
+	log.Infof("MQTT Action: [%s]", mqttAction)
 
 	opts := MQTT.NewClientOptions()
 	opts.AddBroker(mqttBroker)
@@ -63,7 +68,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	if mqttAction == "pub" {
 		client := MQTT.NewClient(opts)
 		if ctoken := client.Connect(); ctoken.Wait() && ctoken.Error() != nil {
-			panic(ctoken.Error())
+			log.Error(ctoken.Error())
 		}
 		ptoken := client.Publish(pubTopic, byte(mqttQos), false, mqttPayload)
 		log.Info("Data published with token: ", ptoken)
