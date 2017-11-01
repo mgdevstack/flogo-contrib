@@ -1,0 +1,23 @@
+{
+  "name": "randomNumber",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "description": "Generates random float number between 30 to 40",
+  "author": "Mayank Gaikwad <mayank.gaikwad@globant.com>",
+  "inputs":[
+    {
+      "name":"min",
+      "type":"number"
+    },
+    {
+      "name":"max",
+      "type":"number"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "rand",
+      "type": "number"
+    }
+  ]
+}
