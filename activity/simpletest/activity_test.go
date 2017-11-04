@@ -4,8 +4,8 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-contrib/action/flow/test"
+	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 )
 
 var activityMetadata *activity.Metadata
@@ -14,7 +14,7 @@ func getActivityMetadata() *activity.Metadata {
 
 	if activityMetadata == nil {
 		jsonMetadataBytes, err := ioutil.ReadFile("activity.json")
-		if err != nil{
+		if err != nil {
 			panic("No Json Metadata found for activity.json path")
 		}
 
@@ -48,8 +48,14 @@ func TestEval(t *testing.T) {
 	tc := test.NewTestActivityContext(getActivityMetadata())
 
 	//setup attrs
+	var ip = "inputData"
+	tc.SetInput("input", ip)
 
 	act.Eval(tc)
+	op := tc.GetOutput("output")
 
 	//check result attr
+	if op != ip {
+		t.Fail()
+	}
 }

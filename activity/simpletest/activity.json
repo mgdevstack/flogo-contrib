@@ -2,8 +2,8 @@
   "name": "simpletest",
   "version": "0.0.1",
   "type": "flogo:activity",
-  "description": "activity description",
-  "author": "Your Name <you.name@example.org>",
+  "description": "Simple Activity to test",
+  "author": "Mayank Gaikwad <mg.devzone@gmail.com>",
   "inputs":[
     {
       "name": "input",
