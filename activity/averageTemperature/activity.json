@@ -21,7 +21,7 @@
   ],
   "outputs": [
     {
-      "name": "average",
+      "name": "result",
       "type": "number"
     }
   ]
