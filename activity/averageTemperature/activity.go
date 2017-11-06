@@ -8,9 +8,9 @@ import (
 var log = logger.GetLogger("activity-averageTemperature")
 
 const (
-	ivTemperature         = "temperature"
-	ivPreviousTemperature = "previousTemperature"
-	ivTotalCount          = "totalCount"
+	ivTemperature     = "temperature"
+	ivPreviousAverage = "previousAverageTemperature"
+	ivTotalCount      = "totalCount"
 
 	ovAverage = "average"
 )
@@ -40,10 +40,10 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	var avg float64
 	// do eval
 	temp := context.GetInput(ivTemperature).(float64)
-	prevTemp := context.GetInput(ivPreviousTemperature).(float64)
+	prevAvg := context.GetInput(ivPreviousAverage).(float64)
 	counter := context.GetInput(ivTotalCount).(int)
 
-	avg = getAverage(temp+prevTemp, float64(counter))
+	avg = getAverage(prevAvg, temp, float64(counter))
 
 	log.Info("Average ", avg)
 
@@ -52,6 +52,6 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	return true, nil
 }
 
-func getAverage(s, c float64) float64 {
-	return s / float64(c)
+func getAverage(p, s, c float64) float64 {
+	return ((p*c + s) / (c + 1))
 }

@@ -3,15 +3,15 @@
   "version": "0.0.1",
   "type": "flogo:activity",  
   "ref": "github.com/TIBCOSoftware/flogo-contrib/activity/averageTemperature",
-  "description": "activity description",
-  "author": "Your Name <you.name@example.org>",
+  "description": "This activity calculates average of current temperature and all previously recorded temperatures",
+  "author": "Mayank Gaikwad <mayank.gaikwad@globant.com>",
   "inputs":[
     {
       "name": "temperature",
       "type": "number"
     },
     {
-      "name": "previousTemperature",
+      "name": "previousAverageTemperature",
       "type": "number"
     },
     {

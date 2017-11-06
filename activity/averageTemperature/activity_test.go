@@ -47,14 +47,14 @@ func TestEval(t *testing.T) {
 	act := NewActivity(getActivityMetadata())
 	tc := test.NewTestActivityContext(getActivityMetadata())
 
-	var i1 = 30.44
-	var i2 = 36.44
-	var c = 2
+	var i1 = 40.0
+	var i2 = 30.0
+	var c = 3
 	//setup attrs
 	tc.SetInput(ivTemperature, i1)
-	tc.SetInput(ivPreviousTemperature, i2)
+	tc.SetInput(ivPreviousAverage, i2)
 	tc.SetInput(ivTotalCount, c)
-	avgTc := getAverage(i1+i2, float64(c))
+	avgTc := getAverage(i2, i1, float64(c))
 
 	act.Eval(tc)
 
