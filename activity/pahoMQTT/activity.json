@@ -39,7 +39,7 @@
   ],
   "outputs": [
     {
-      "name": "output",
+      "name": "result",
       "type": "any"
     }
   ]
