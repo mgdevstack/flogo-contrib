@@ -1,0 +1,28 @@
+{
+  "name": "averageTemperature",
+  "version": "0.0.1",
+  "type": "flogo:activity",  
+  "ref": "github.com/TIBCOSoftware/flogo-contrib/activity/averageTemperature",
+  "description": "activity description",
+  "author": "Your Name <you.name@example.org>",
+  "inputs":[
+    {
+      "name": "temperature",
+      "type": "number"
+    },
+    {
+      "name": "previousTemperature",
+      "type": "number"
+    },
+    {
+      "name": "totalCount",
+      "type": "number"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "average",
+      "type": "number"
+    }
+  ]
+}

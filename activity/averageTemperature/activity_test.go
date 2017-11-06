@@ -1,0 +1,68 @@
+package averageTemperature
+
+import (
+	"io/ioutil"
+	"testing"
+
+	"github.com/TIBCOSoftware/flogo-contrib/action/flow/test"
+	"github.com/TIBCOSoftware/flogo-lib/core/activity"
+)
+
+var activityMetadata *activity.Metadata
+
+func getActivityMetadata() *activity.Metadata {
+
+	if activityMetadata == nil {
+		jsonMetadataBytes, err := ioutil.ReadFile("activity.json")
+		if err != nil {
+			panic("No Json Metadata found for activity.json path")
+		}
+
+		activityMetadata = activity.NewMetadata(string(jsonMetadataBytes))
+	}
+
+	return activityMetadata
+}
+
+func TestCreate(t *testing.T) {
+
+	act := NewActivity(getActivityMetadata())
+
+	if act == nil {
+		t.Error("Activity Not Created")
+		t.Fail()
+		return
+	}
+}
+
+func TestEval(t *testing.T) {
+
+	defer func() {
+		if r := recover(); r != nil {
+			t.Failed()
+			t.Errorf("panic during execution: %v", r)
+		}
+	}()
+
+	act := NewActivity(getActivityMetadata())
+	tc := test.NewTestActivityContext(getActivityMetadata())
+
+	var i1 = 30.44
+	var i2 = 36.44
+	var c = 2
+	//setup attrs
+	tc.SetInput(ivTemperature, i1)
+	tc.SetInput(ivPreviousTemperature, i2)
+	tc.SetInput(ivTotalCount, c)
+	avgTc := getAverage(i1+i2, float64(c))
+
+	act.Eval(tc)
+
+	//check result attr
+	op := tc.GetOutput(ovAverage)
+
+	if avgTc != op {
+		t.Fail()
+	}
+
+}
