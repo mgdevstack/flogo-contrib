@@ -1,6 +1,7 @@
 {
   "name": "randomNumber",
   "version": "0.0.1",
+  "ref": "github.com/mgdevstack/flogo-contrib/activity/randomNumber",
   "type": "flogo:activity",
   "description": "Generates random float number between 30 to 40",
   "author": "Mayank Gaikwad <mayank.gaikwad@globant.com>",

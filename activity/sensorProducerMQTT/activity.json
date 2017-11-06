@@ -1,9 +1,10 @@
 {
   "name": "sensorProducerMQTT",
   "version": "0.0.1",
+  "ref": "github.com/mgdevstack/flogo-contrib/activity/sensorProducerMQTT",
   "type": "flogo:activity",
   "description": "connects to MQTT Broker, create device specific topic, sends temperature to this topic",
-  "author": "Mayank Gaikwad <mayank.gaikwad@globant.com>",
+  "author": "Mayank Gaikwad <mayank.gaikwad@globant.com>",  
   "inputs":[
     {
       "name": "mqttBrokerURL",

@@ -1,6 +1,7 @@
 {
   "name": "pahoMQTT",
   "version": "0.0.1",
+  "ref": "github.com/mgdevstack/flogo-contrib/activity/pahoMQTT",
   "type": "flogo:activity",
   "description": "Activity Creates paho client and send data to respective mqtt broker",
   "author": "Mayank Gaikwad <mayank.gaikwad@globant.com>",
