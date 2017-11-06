@@ -41,9 +41,9 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	// do eval
 	temp := context.GetInput(ivTemperature).(float64)
 	prevAvg := context.GetInput(ivPreviousAverage).(float64)
-	counter := context.GetInput(ivTotalCount).(int)
+	counter := context.GetInput(ivTotalCount).(float64)
 
-	avg = getAverage(prevAvg, temp, float64(counter))
+	avg = getAverage(prevAvg, temp, counter)
 
 	log.Info("Average ", avg)
 
